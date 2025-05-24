@@ -710,7 +710,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     phone: form.phone.value
   };
 
-  fetch('https://fish-market-3.onrender.com/send-email', {
+  fetch('http://localhost:3000/send-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
@@ -725,7 +725,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
   })
   .then(response => {
     const msgElem = document.getElementById("formMsg");
-    msgElem.textContent = response.message || "Email sent successfully!";
+    msgElem.textContent = response.message || "Email sent successfully....!";
     form.reset();
 
     setTimeout(() => {
@@ -733,7 +733,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     }, 3000); // message disappears after 3 seconds
   })
   .catch(err => {
-    console.error("Fetch error:", err);
+    console.error("Fetch the error:", err);
     document.getElementById("formMsg").textContent = "Error sending message.";
   });
 });
