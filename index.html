@@ -51,11 +51,27 @@
       image-rendering: auto;
     }
 
-    .hero h1 {
+    /* .hero h1 {
       font-size: 3rem;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
       margin-bottom: 20px;
-    }
+    } */
+
+
+    .hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #090909;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hero h1:hover {
+  transform: scale(1.05);
+  color: #333333; /* gold on hover */
+}
 
     .hero .btn-group {
       display: flex;
@@ -601,6 +617,89 @@
   <p id="formMsg" style="margin-top:10px;"></p>
 </section>
 
+<!-- <script>
+// document.getElementById("contactForm").addEventListener("submit", function(e) {
+//   e.preventDefault();
+
+//   const form = e.target;
+//   const data = {
+//     name: form.name.value,
+//     email: form.email.value,
+//     phone: form.phone.value
+//   };
+
+//   fetch('http://localhost:3000/send-email', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(data)
+//   })
+//   .then(res => res.json())
+//   .then(response => {
+//     document.getElementById("formMsg").textContent = response.message || "Submitted!";
+//     form.reset();
+//   })
+//   .catch(err => {
+//      console.error("Fetch error:", err); 
+//     document.getElementById("formMsg").textContent = "Error sending message.";
+//   });
+// });
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value
+  };
+
+  // fetch('http://localhost:3000/send-email', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(data)
+  // })
+  // .then(res => res.json())
+  // .then(response => {
+  //   console.log("Server response:", response);
+  //   document.getElementById("formMsg").textContent = response.message || "Submitted!";
+  //   form.reset();
+  // })
+  // .catch(err => {
+  //   console.error("Fetch error:", err);
+  //   document.getElementById("formMsg").textContent = "Error sending message.";
+  // })
+  // .finally(() => {
+  //   submitBtn.disabled = false;
+  // });
+fetch('http://localhost:3000/send-email', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+})
+.then(async res => {
+  const text = await res.text();
+  console.log('Raw server response:', text);
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error('Response is not valid JSON');
+  }
+})
+.then(response => {
+  document.getElementById("formMsg").textContent = response.message || "Submitted!";
+  form.reset();
+})
+.catch(err => {
+  console.error("Fetch error:", err);
+  document.getElementById("formMsg").textContent = "Error sending message.";
+});
+
+});
+
+
+</script> -->
 <script>
 document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
@@ -617,12 +716,25 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   })
-  .then(res => res.json())
+  .then(async res => {
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      throw new Error('Response is not valid JSON');
+    }
+  })
   .then(response => {
-    document.getElementById("formMsg").textContent = response.message || "Submitted!";
+    const msgElem = document.getElementById("formMsg");
+    msgElem.textContent = response.message || "Email sent successfully!";
     form.reset();
+
+    setTimeout(() => {
+      msgElem.textContent = "";
+    }, 3000); // message disappears after 3 seconds
   })
   .catch(err => {
+    console.error("Fetch error:", err);
     document.getElementById("formMsg").textContent = "Error sending message.";
   });
 });
