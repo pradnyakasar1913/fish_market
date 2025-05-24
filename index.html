@@ -62,7 +62,6 @@
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
   color: #090909;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
   margin-bottom: 20px;
   letter-spacing: 1px;
   transition: transform 0.3s ease, color 0.3s ease;
@@ -711,6 +710,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     phone: form.phone.value
   };
 
+  fetch('http://localhost:3000/send-email', {
   fetch('https://fish-market-3.onrender.com/send-email', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
