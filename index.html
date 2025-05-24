@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fresh Catch Fish Market</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f0f8ff;
+      color: #1a2e3b;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #0077b6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: url('https://www.thefishmarket.com/wp-content/uploads/2022/11/our-fishery-bg.webp') no-repeat center center/cover;
+      height: 70vh;
+      color: rgb(6, 4, 4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      image-rendering: auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      margin-bottom: 20px;
+    }
+
+    .hero .btn-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .hero button {
+      background-color: #0077b6;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: #005f87;
+    }
+
+    /* Sections */
+    section {
+      padding: 50px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #023e8a;
+    }
+
+    /* About Us */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 30px;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .about img {
+      width: 350px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .about p {
+      max-width: 600px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    /* Offerings */
+    .offerings {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .offer-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 280px;
+      padding: 20px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .offer-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .offer-card h3 {
+      margin-bottom: 10px;
+      color: #0077b6;
+    }
+
+    /* Featured Specials */
+    .specials {
+      background: #caf0f8;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .specials button {
+      background-color: #0077b6;
+      border: none;
+      padding: 12px 25px;
+      color: white;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .specials button:hover {
+      background-color: #005f87;
+    }
+
+    /* Recipe Corner */
+    .recipes {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .recipes p {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      color: #444;
+    }
+
+    /* Sustainability */
+    .sustainability {
+      background: #dff6f0;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      color: #026440;
+    }
+
+    .sustainability ul {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    .sustainability li {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .testimonial {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .testimonial cite {
+      font-weight: bold;
+      color: #0077b6;
+    }
+
+    /* Location & Hours */
+    .location {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .location-info {
+      max-width: 400px;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 10px;
+      width: 400px;
+      height: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #023e8a;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    footer a {
+      color: #90e0ef;
+    }
+
+    footer input[type="email"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-right: 10px;
+      max-width: 250px;
+      width: 60%;
+    }
+
+    footer button {
+      padding: 10px 20px;
+      background-color: #0077b6;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer button:hover {
+      background-color: #005f87;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .about {
+        flex-direction: column;
+      }
+
+      .offerings {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .location {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      iframe {
+        width: 90%;
+        height: 250px;
+      }
+      
+    }
+       body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    .section-container {
+  background-image: url('https://www.thefishmarket.com/wp-content/uploads/2022/11/our-fishery-bg.webp');
+  background-size: cover;
+  background-position: left center;  /* Adjust this based on fish location */
+  background-repeat: no-repeat;
+  padding: 60px 20px;
+  color: white;
+  position: relative;
+}
+
+
+  .section-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.2) 0%, 
+    rgba(0, 0, 0, 0.4) 50%, 
+    rgba(0, 0, 0, 0.2) 100%
+  ); /* darker in the center */
+  z-index: 1;
+}
+
+
+    .section-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #ffffff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 20px;
+      text-align: center;
+      color: #333;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+  .card img {
+  width: 120px;   /* bigger width */
+  height: 120px;  /* bigger height */
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #004466;
+    }
+
+    .card p {
+      font-size: 14px;
+    }
+
+  .specials {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .specials h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  #contactForm input[type="text"],
+  #contactForm input[type="email"],
+  #contactForm input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  #contactForm input[type="text"]:focus,
+  #contactForm input[type="email"]:focus,
+  #contactForm input[type="tel"]:focus {
+    border-color: #3b82f6; /* Blue accent */
+    outline: none;
+  }
+  #contactForm button {
+    width: 100%;
+    padding: 14px;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #contactForm button:hover {
+    background-color: #2563eb;
+  }
+  #formMsg {
+    text-align: center;
+    font-weight: 600;
+    color: #16a34a; /* green for success, can switch with error */
+  }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>From Ocean to Table – Freshness Delivered Daily</h1>
+    <div class="btn-group">
+      <button onclick="alert('Order Online Clicked')">Order Online</button>
+      <button onclick="alert('View Menu Clicked')">View Menu</button>
+    </div>
+  </section>
+
+  
+
+  <div class="container">
+
+    <!-- About Us -->
+    <section id="about-us" class="about">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Fishermen at work" />
+      <p>
+        Fresh Catch Fish Market has proudly served the community since 1998,
+        sourcing the freshest seafood daily from local fishermen committed to sustainable practices.
+        Our passion is bringing ocean-fresh quality right to your table.
+      </p>
+    </section>
+
+     <div class="section-container">
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <h2 class="section-title">Explore Our Menu</h2>
+
+      <div class="grid">
+        <!-- Seafood -->
+        <div class="card">
+         <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Fresh Catch" />
+          <h3>Seafood</h3>
+          <p>Our simple grilled fish made us famous, and that’s just a fraction of our menu. Let our “menu masters” offer recommendations based on your preferences.</p>
+        </div>
+
+        <!-- Oysters -->
+        <div class="card">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Fresh Catch" />
+          <h3>Oysters</h3>
+          <p>Freshly Shucked Oysters have been a part of our menu since 1976. Oyster newcomer? Oysters Rockefeller might be the right first bite for you!</p>
+        </div>
+
+        <!-- Desserts -->
+        <div class="card">
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Fresh Catch" />
+          <h3>Scratch Desserts</h3>
+          <p>Every dessert served is made in house from our classic recipes — from key lime pie to chocolate mousse. Truly, save some room!</p>
+        </div>
+
+        <!-- Retail Market -->
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Retail Market">
+          <h3>Retail Market</h3>
+          <p>Each of our restaurants has a retail market. Order menu items to go, buy fresh fish, or grab ready-to-eat smoked salmon. Ask our experts for cooking tips!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Our Offerings -->
+    <section id="offerings">
+      <h2>Our Offerings</h2>
+      <div class="offerings">
+        <div class="offer-card">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Fresh Catch" />
+          <h3>Fresh Catch</h3>
+          <p>Daily selections of fish and shellfish caught fresh from the sea.</p>
+        </div>
+        <div class="offer-card">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Prepared Meals" />
+          <h3>Prepared Meals</h3>
+          <p>Delicious ready-to-eat seafood dishes, perfect for a quick meal.</p>
+        </div>
+        <div class="offer-card">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80" alt="Catering Services" />
+          <h3>Catering Services</h3>
+          <p>Let us cater your next event with fresh and flavorful seafood options.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Specials -->
+    <section id="specials" class="specials">
+      <h2>Featured Specials</h2>
+      <p>Enjoy our seasonal seafood specials — fresh, delicious, and at great prices!</p>
+      <button onclick="alert('Grab the Deal!')">Grab the Deal</button>
+    </section>
+
+    <!-- Recipe Corner -->
+    <section id="recipes" class="recipes">
+      <h2>Recipe Corner</h2>
+      <p>Discover new ways to prepare your favorite seafood with weekly recipes and cooking tips.</p>
+      <a href="#" style="color:#0077b6; font-weight:600;">Explore Recipes &rarr;</a>
+    </section>
+
+    <!-- Sustainability Commitment -->
+    <section id="sustainability" class="sustainability">
+      <h2>Our Sustainability Commitment</h2>
+      <p>We care about the ocean and our community by practicing:</p>
+      <ul>
+        <li>Eco-friendly fishing methods</li>
+        <li>Supporting local fishermen</li>
+        <li>Using recyclable packaging</li>
+      </ul>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial">
+        <p>"The freshest seafood I've ever tasted. Friendly staff and great service!"</p>
+        <cite>- Jane D.</cite>
+      </div>
+      <div class="testimonial">
+        <p>"Always a pleasure shopping here. Their prepared meals saved me on busy nights."</p>
+        <cite>- Mark S.</cite>
+      </div>
+    </section>
+
+    <!-- Location & Hours -->
+    <section id="location" class="location">
+      <div class="location-info">
+        <h2>Visit Us</h2>
+        <p><strong>Address:</strong> 123 Ocean Drive, Harbor City</p>
+        <p><strong>Hours:</strong> Mon-Sat: 8am - 6pm | Sun: Closed</p>
+        <p><strong>Phone:</strong> (555) 123-4567</p>
+      </div>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019872324506!2d-122.41941568468167!3d37.77492977975953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085818b94a83e1f%3A0x55f6b5ed6e5452b4!2sFisherman%27s%20Wharf!5e0!3m2!1sen!2sus!4v1623318088089!5m2!1sen!2sus" 
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Map to Fish Market"
+      ></iframe>
+    </section>
+  </div>
+
+  <section class="specials">
+  <h2>Get in Touch</h2>
+  <form id="contactForm">
+    <input type="text" name="name" placeholder="Your Name" required><br><br>
+    <input type="email" name="email" placeholder="Your Email" required><br><br>
+    <input type="tel" name="phone" placeholder="Phone Number" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="formMsg" style="margin-top:10px;"></p>
+</section>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value
+  };
+
+  fetch('http://localhost:3000/send-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(response => {
+    document.getElementById("formMsg").textContent = response.message || "Submitted!";
+    form.reset();
+  })
+  .catch(err => {
+    document.getElementById("formMsg").textContent = "Error sending message.";
+  });
+});
+</script>
+
+
+  <!-- Footer -->
+  <footer style="background-color:#0c1a1e; color:white; padding: 40px 20px; font-family:Arial, sans-serif;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto;">
+    
+    <!-- Logo + Description -->
+    <div style="flex: 1 1 250px; margin-bottom: 20px;">
+      <h2 style="color:#f8c13d;">Fish Market</h2>
+      <p style="color:#ccc;">Fresh seafood delivered daily. Trusted by chefs & home cooks alike. Dive into freshness!</p>
+    </div>
+    
+    <!-- Quick Links -->
+    <div style="flex: 1 1 150px; margin-bottom: 20px;">
+      <h3 style="color:#f8c13d;">Quick Links</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li><a href="#" style="color:#ccc; text-decoration:none;">Home</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none;">About Us</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none;">Shop</a></li>
+        <li><a href="#" style="color:#ccc; text-decoration:none;">Contact</a></li>
+      </ul>
+    </div>
+    
+    <!-- Contact Info -->
+    <div style="flex: 1 1 200px; margin-bottom: 20px;">
+      <h3 style="color:#f8c13d;">Contact</h3>
+      <p style="color:#ccc;">📍 123 Ocean Drive, Seaside</p>
+      <p style="color:#ccc;">📞 (123) 456-7890</p>
+      <p style="color:#ccc;">📧 info@fishmarket.com</p>
+    </div>
+    
+    <!-- Social Links -->
+    <div style=" margin-bottom: 20px;">
+      <h3 style="color:#f8c13d;">Follow Us</h3>
+      <div style="display:flex; gap:10px; margin-top:10px;">
+        <a href="#" style="color:white; font-size:20px;">🐦</a>
+        <a href="#" style="color:white; font-size:20px;">📘</a>
+        <a href="#" style="color:white; font-size:20px;">📸</a>
+        <a href="#" style="color:white; font-size:20px;">▶️</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Footer -->
+  <div style="border-top:1px solid #333; margin-top:30px; padding-top:20px; text-align:center; color:#999;">
+    &copy; 2025 Fish Market. All rights reserved.
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>
